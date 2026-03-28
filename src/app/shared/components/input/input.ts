@@ -1,9 +1,8 @@
-import { JsonPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-input',
-  imports: [JsonPipe],
+  imports: [],
   templateUrl: './input.html',
   styleUrl: './input.scss',
 })

@@ -1,13 +1,4 @@
-.layout {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  background: url('/images/main-bg.png') no-repeat;
-  background-size: cover;
-}
-
-.layout__page {
+.login {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -23,5 +14,3 @@ app-input {
   width: 100%;
   padding-bottom: 17px;
 }
-
-
