@@ -2,9 +2,20 @@ import { Component } from '@angular/core';
 
 export interface IMenu {
     title: string | null;
-    iconUrl: string;
+    iconUrl?: string;
     link: string;
 }
+
+export const menu: IMenu[] = [
+  {
+    title: 'Комедия',
+    link: '/comedy',
+  },
+   {
+    title: 'Фантастика',
+    link: '/fantasy',
+  }
+];
 
 @Component({
   selector: 'app-menu',

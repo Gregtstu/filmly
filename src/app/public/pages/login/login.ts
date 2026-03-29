@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shared/services/auth.service';
 import { Component, inject } from '@angular/core';
 import { InputComponent } from '../../../shared/components/input/input';
 import { Button } from '../../../shared/components/button/button';
@@ -13,6 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class Login {
     private _router: Router = inject(Router);
+    private _authServ: AuthService = inject(AuthService);
 
       form = new FormGroup({
     email: new FormControl('', {
@@ -29,6 +31,7 @@ export class Login {
 
 
   onLogin() {
+    this._authServ.isAuthenticated = true;
     this._router.navigate(['/private']);
   }
 }
