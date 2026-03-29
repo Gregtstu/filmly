@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
-import { Layout } from './public/pages/_layout/layout';
-import { Home } from './private/home/home';
-import { Favorites } from './private/favorites/favorites';
-import { Private } from './private/private/private';
 import { Login } from './public/pages/login/login';
+import { Private } from './private/_layout/private';
+import { Home } from './private/pages/home/home';
+import { Favorites } from './private/pages/favorites/favorites';
+import { Layout } from './public/_layout/layout';
+import { authGuard } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -12,11 +13,11 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'log-in',
         pathMatch: 'full'
       },
       {
-        path: 'login',
+        path: 'log-in',
         component: Login,
       },
       {
@@ -28,6 +29,7 @@ export const routes: Routes = [
   {
     path: 'private',
     component: Private,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -36,15 +38,15 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        component: Home
+        component: Home,
       },
       {
         path: 'favorites',
-        component: Favorites
+        component: Favorites,
       },
       {
         path: '**',
-        redirectTo: 'private',
+        redirectTo: '/home',
       }
     ],
   },

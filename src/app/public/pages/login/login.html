@@ -8,7 +8,13 @@
       class="login__logo--image"/>
     </div>
     <h2>Вход</h2>
-    <app-input iconUrl="icons/mail.svg"></app-input>
-    <app-password-input iconUrl="icons/lock.svg"></app-password-input>
-    <app-button>Войти</app-button>
+    <app-input
+      iconUrl="icons/mail.svg"
+      formControlName="email">
+    </app-input>
+    <app-password-input
+      iconUrl="icons/lock.svg"
+      formControlName="password">
+    </app-password-input>
+    <app-button (click)="onLogin()">Войти</app-button>
   </div>
