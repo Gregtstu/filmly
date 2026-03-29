@@ -9,11 +9,11 @@ export interface IMenu {
 export const menu: IMenu[] = [
   {
     title: 'Комедия',
-    link: '/comedy',
+    link: '/private/home',
   },
    {
     title: 'Фантастика',
-    link: '/fantasy',
+    link: '/private/favorites',
   }
 ];
 
@@ -24,5 +24,5 @@ export const menu: IMenu[] = [
   styleUrl: './menu.scss',
 })
 export class Menu {
-
+  menu = menu;
 }

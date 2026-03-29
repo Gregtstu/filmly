@@ -13,22 +13,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrl: './login.scss',
 })
 export class Login {
-    private _router: Router = inject(Router);
-    private _authServ: AuthService = inject(AuthService);
-
-      form = new FormGroup({
-    email: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.email],
-    }),
-    password: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-  });
-
-  error: string | null = null;
-
+  private _router: Router = inject(Router);
+  private _authServ: AuthService = inject(AuthService);
 
   onLogin() {
     this._authServ.isAuthenticated = true;

@@ -19,5 +19,5 @@ export const authGuard = (
     return true;
   }
 
-  return router.parseUrl('/public/login');
+  return router.parseUrl('/public/log-in');
 };
