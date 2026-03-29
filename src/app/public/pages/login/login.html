@@ -1,0 +1,16 @@
+ <div class="login">
+    <div class="login__logo">
+      <img
+      [src]="'images/logo.svg'"
+      alt="logo"
+      width="117"
+      height="29"
+      class="login__logo--image"/>
+    </div>
+    <h2>Вход</h2>
+    <app-input iconUrl="icons/mail.svg">
+    </app-input>
+    <app-password-input iconUrl="icons/lock.svg">
+    </app-password-input>
+    <app-button (click)="onLogin()">Войти</app-button>
+  </div>
