@@ -6,7 +6,7 @@ export interface IMovie {
   /** Год выхода */
   releaseYear: number;
   /** Список жанров фильма (id из GENRES, кроме 'all') */
-  genreIds: string[];
+  genreIds: number[];
   /** Рейтинг в звёздах. Храним дробным, но рендерить округлённо в меньшую сторону */
   rating: number; // 0..5
   /** URL постера */

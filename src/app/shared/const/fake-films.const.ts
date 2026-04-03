@@ -1,4 +1,6 @@
-const MOVIES: IMovie[] = [
+import { IMovie } from "../models/movie.model";
+
+export const MOVIES: IMovie[] = [
   {
     id: 'm_002',
     title: 'Interstellar',
