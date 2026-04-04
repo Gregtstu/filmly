@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export enum EPasswordInputIcons {
   Opened = 'icons/eye_opened.svg',
@@ -12,14 +12,14 @@ export enum EPasswordInputIcons {
   styleUrl: './password-input.scss',
 })
 export class PasswordInput {
-  private innerValue = '';
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onChange: (value: string) => void = () => {};
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onTouched: () => void = () => {};
 
-  @Input() iconUrl: string | null = null;
-  @Input() placeholder = '';
+  iconUrl = input();
+  placeholder = input();;
+
   disabled = false;
 
   type = 'password';

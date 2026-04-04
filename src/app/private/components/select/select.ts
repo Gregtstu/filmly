@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { IGenre } from '../../../shared/const/genres.const';
 
 @Component({
@@ -12,7 +12,7 @@ import { IGenre } from '../../../shared/const/genres.const';
         (change)="onSelectionChange($event)"
         class="custom-select">
 
-        @for (option of options; track option.id) {
+        @for (option of options(); track option.id) {
           <option [value]="option.name">
             {{ option.name }}
           </option>
@@ -26,11 +26,10 @@ import { IGenre } from '../../../shared/const/genres.const';
   styleUrl: './select.scss',
 })
 export class Select {
-  @Input({ required: true }) options: IGenre[] = [];
+  options = input.required<IGenre[]>();
+  selectedTarget = input();
 
-  @Input() selectedTarget: any;
-
-  @Output() selectionChange = new EventEmitter<any>();
+  selectionChange = output<any>();
 
   onSelectionChange(event: Event) {
     const value = (event.target as HTMLSelectElement).value;

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -13,9 +13,9 @@ export class InputComponent {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onTouched: () => void = () => {};
 
-  @Input() iconUrl: string | null = null;
-  @Input() type: 'text' | 'email' = 'text';
-  @Input() placeholder = '';
+  iconUrl = input();
+  type = input<'text' | 'email'>('text');
+  placeholder = input();
 
   disabled = false;
 

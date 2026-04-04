@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Rating } from '../rating/rating';
 import { IMovie } from '../../../shared/models/movie.model';
 
@@ -7,15 +7,14 @@ import { IMovie } from '../../../shared/models/movie.model';
   imports: [Rating],
   template: `
     <div class="movie-card">
-      <img [src]="movie.posterUrl" [alt]="movie.title">
-      <h3>{{ movie.title }}</h3>
-      <p>{{ movie.description }}</p>
-      <app-rating [value]="movie.rating"></app-rating>
+      <img [src]="movie().posterUrl" [alt]="movie().title">
+      <h3>{{ movie().title }}</h3>
+      <p>{{ movie().description }}</p>
+      <app-rating [value]="movie().rating"></app-rating>
     </div>
     `,
   styleUrl: './card.scss',
 })
 export class Card {
-   @Input({ required: true }) movie!: IMovie;
-
+  movie = input.required<IMovie>();
 }

@@ -14,7 +14,7 @@ import {
   styleUrl: './button.scss',
 })
 export class Button {
-  @Input() disabled = false;
+  () disabled = false;
 
   @Output() btnClick: EventEmitter<void> = new EventEmitter<void>();
   @ContentChild('buttonContent') btnRef: ElementRef | undefined;
