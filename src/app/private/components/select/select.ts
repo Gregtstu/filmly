@@ -12,9 +12,9 @@ import { IGenre } from '../../../shared/const/genres.const';
         (change)="onSelectionChange($event)"
         class="custom-select">
 
-        @for (option of options; track option.value) {
-          <option [value]="option.value">
-            {{ option.label }}
+        @for (option of options; track option.id) {
+          <option [value]="option.name">
+            {{ option.name }}
           </option>
         } @empty {
           <option disabled>Список пуст</option>
