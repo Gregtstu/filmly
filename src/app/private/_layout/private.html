@@ -1,0 +1,8 @@
+<p>private works!</p>
+<app-menu></app-menu>
+  <app-select
+      label="Выберите:"
+      [options]="genres"
+      (selectionChange)="handleChange($event)">
+  </app-select>
+<router-outlet></router-outlet>

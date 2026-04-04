@@ -1,0 +1,10 @@
+@if((favorites$ | async)?.length) {
+  @for (item of (favorites$ | async); track $index) {
+    <ul>
+      <li>{{item.description}}</li>
+      <li>{{item.isFavorite}}</li>
+      <li>{{item.title}}</li>
+      <li>{{item.posterUrl}}</li>
+    </ul>
+  }
+}
