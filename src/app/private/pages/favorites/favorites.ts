@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MOVIES } from '../../../shared/const/fake-films.const';
 
 @Component({
   selector: 'app-favorites',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './favorites.scss',
 })
 export class Favorites {
-
+  public movies = MOVIES;
 }
