@@ -1,4 +1,4 @@
-@if(favorites.length) {
+@if((favorites$ | async)) {
   @for (item of (favorites$ | async); track $index) {
     <ul>
       <li>{{item.description}}</li>
