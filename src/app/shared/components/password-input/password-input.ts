@@ -12,12 +12,14 @@ export enum EPasswordInputIcons {
   styleUrl: './password-input.scss',
 })
 export class PasswordInput {
+  private innerValue = '';
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onChange: (value: string) => void = () => {};
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onTouched: () => void = () => {};
 
   iconUrl = input();
+
   placeholder = input();;
 
   disabled = false;
