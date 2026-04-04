@@ -12,7 +12,7 @@ import { GENRES } from '../../shared/const/genres.const';
 })
 export class Private {
   public genres = GENRES;
-  handleFruitChange(value: string) {
+  handleChange(value: string) {
     console.log('Выбран:', value);
   }
 }
