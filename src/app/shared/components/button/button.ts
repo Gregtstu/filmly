@@ -2,9 +2,8 @@ import {
   Component,
   ContentChild,
   ElementRef,
-  EventEmitter,
-  Input,
-  Output,
+  input,
+  output
 } from '@angular/core';
 
 @Component({
@@ -14,9 +13,9 @@ import {
   styleUrl: './button.scss',
 })
 export class Button {
-  () disabled = false;
+  disabled = input(false);
+  btnClick = output();
 
-  @Output() btnClick: EventEmitter<void> = new EventEmitter<void>();
   @ContentChild('buttonContent') btnRef: ElementRef | undefined;
 
   onBtnClick(): void {

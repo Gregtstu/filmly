@@ -1,4 +1,4 @@
-@for (movie of movies; track movie.id; let i = $index) {
+@for (movie of (movies$ | async); track movie.id; let i = $index) {
   <app-card [movie]="movie"></app-card>
   <p>Номер в списке: {{ i }}</p>
 }
