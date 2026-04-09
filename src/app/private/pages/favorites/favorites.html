@@ -1,0 +1,10 @@
+@if(favorites.length) {
+  @for (item of favorites; track $index) {
+    <ul>
+      <li>{{item.description}}</li>
+      <li>{{item.isFavorite}}</li>
+      <li>{{item.title}}</li>
+      <li>{{item.posterUrl}}</li>
+    </ul>
+  }
+}
