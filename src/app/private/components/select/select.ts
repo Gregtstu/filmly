@@ -8,7 +8,7 @@ import { IGenre } from '../../../shared/const/genres.const';
   template: `
     <div class="select-wrapper">
       <select
-        [value]="selectedTarget"
+        [value]="selectedTarget()"
         (change)="onSelectionChange($event)"
         class="custom-select">
 
@@ -26,7 +26,7 @@ import { IGenre } from '../../../shared/const/genres.const';
   styleUrl: './select.scss',
 })
 export class Select {
-  options = input.required<IGenre[]>();
+  options = input.required<IGenre[] | null>();
   selectedTarget = input();
 
   selectionChange = output<any>();

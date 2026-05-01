@@ -2,7 +2,7 @@
 <app-menu></app-menu>
   <app-select
       label="Выберите:"
-      [options]="genres"
+      [options]="genres$ | async"
       (selectionChange)="handleChange($event)">
   </app-select>
 <router-outlet></router-outlet>

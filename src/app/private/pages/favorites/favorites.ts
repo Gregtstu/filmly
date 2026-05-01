@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FAVORITES } from '../../../shared/const/fake-favorites.const';
-import { delay, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { StoreService } from '../../../shared/services/store.service';
 
 @Component({
   selector: 'app-favorites',
@@ -9,6 +9,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './favorites.html',
   styleUrl: './favorites.scss',
 })
-export class Favorites {
-  public favorites$ =  of(FAVORITES).pipe(delay(1000));
+export class Favorites implements OnInit {
+  private store: StoreService = inject(StoreService);
+  public  favorites$ = this.store.favorites$;
+
+  ngOnInit() {
+    this.store.updateData({ favorites: FAVORITES });
+  }
 }
