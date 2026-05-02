@@ -1,17 +1,17 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from "@angular/router";
-import { Menu } from "../components/menu/menu";
 import { Select } from '../components/select/select';
-import { GENRES } from '../../shared/const/genres.const';
 import { StoreService } from '../../shared/services/store.service';
 import { AsyncPipe } from '@angular/common';
 import { debounceTime } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup } from '@angular/forms';
+import { InputComponent } from '../../shared/components/input/input';
 
 @Component({
   selector: 'app-private',
-  imports: [RouterOutlet, Menu, Select, AsyncPipe],
+  imports: [RouterOutlet, Select, AsyncPipe, ReactiveFormsModule, InputComponent],
   templateUrl: './private.html',
   styleUrl: './private.scss',
 })

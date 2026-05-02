@@ -1,16 +1,24 @@
- <div class="login">
-    <div class="login__logo">
-      <img
-      [src]="'images/logo.svg'"
-      alt="logo"
-      width="117"
-      height="29"
-      class="login__logo--image"/>
-    </div>
-    <h2>Вход</h2>
-    <app-input iconUrl="icons/mail.svg">
-    </app-input>
-    <app-password-input iconUrl="icons/lock.svg">
-    </app-password-input>
-    <app-button (click)="onLogin()">Войти</app-button>
-  </div>
+<form [formGroup]="form" (ngSubmit)="onLogin()" class="login">
+  <!-- Используем CVA Input -->
+  <app-input
+    formControlName="email"
+    iconUrl="icons/mail.svg"
+    placeholder="Email">
+  </app-input>
+  @if (form.get('email')?.touched && form.get('email')?.invalid) {
+    <div class="error">Введите корректный email</div>
+  }
+
+  <!-- Используем CVA PasswordInput -->
+  <app-password-input
+    formControlName="password"
+    iconUrl="icons/lock.svg"
+    placeholder="Пароль">
+  </app-password-input>
+  @if (form.get('password')?.touched && form.get('password')?.invalid) {
+    <div class="error">Пароль обязателен</div>
+  }
+
+  <!-- Связываем кнопку с сигналом -->
+  <app-button [disabled]="isSubmitDisabled()" type="submit">Войти</app-button>
+</form>

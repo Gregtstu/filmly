@@ -1,8 +1,13 @@
-<p>private works!</p>
-<app-menu></app-menu>
+<form [formGroup]="filterForm">
   <app-select
-      label="Выберите:"
-      [options]="genres$ | async"
-      (selectionChange)="handleChange($event)">
+    formControlName="genre"
+    [options]="genres$ | async">
   </app-select>
+
+  <app-input
+    formControlName="search"
+    placeholder="Поиск...">
+  </app-input>
+</form>
+
 <router-outlet></router-outlet>
