@@ -1,23 +1,34 @@
-import { Component, input } from '@angular/core';
+import { Component, input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-input',
-  imports: [],
+  standalone: true,
+  imports: [NgOptimizedImage],
   templateUrl: './input.html',
   styleUrl: './input.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true,
+    },
+  ],
 })
-export class InputComponent {
-  private innerValue = '';
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onChange: (value: string) => void = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onTouched: () => void = () => {};
+export class InputComponent implements ControlValueAccessor {
+  prefixIcon = input<string>();
+  postfixIcon = input<string>();
 
-  iconUrl = input();
   type = input<'text' | 'email'>('text');
-  placeholder = input();
+  placeholder = input<string>('');
 
+  innerValue = '';
   disabled = false;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onChange: (value: string) => void = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onTouched: () => void = () => {};
 
   writeValue(value: string): void {
     this.innerValue = value ?? '';
@@ -36,8 +47,7 @@ export class InputComponent {
   }
 
   handleInput(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const value = target.value;
+    const value = (event.target as HTMLInputElement).value;
     this.innerValue = value;
     this.onChange(value);
     this.onTouched();

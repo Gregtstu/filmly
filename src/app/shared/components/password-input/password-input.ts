@@ -1,4 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgOptimizedImage } from '@angular/common';
 
 export enum EPasswordInputIcons {
   Opened = 'icons/eye_opened.svg',
@@ -7,25 +9,30 @@ export enum EPasswordInputIcons {
 
 @Component({
   selector: 'app-password-input',
-  imports: [],
+  standalone: true,
+  imports: [NgOptimizedImage],
   templateUrl: './password-input.html',
   styleUrl: './password-input.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => PasswordInput),
+      multi: true,
+    },
+  ],
 })
-export class PasswordInput {
-  private innerValue = '';
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onChange: (value: string) => void = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onTouched: () => void = () => {};
-
-  iconUrl = input();
-
-  placeholder = input();;
-
+export class PasswordInput implements ControlValueAccessor {
+  innerValue = '';
   disabled = false;
-
   type = 'password';
   buttonIcon = EPasswordInputIcons.Closed;
+
+  iconUrl = input<string>();
+  placeholder = input<string>('');
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onChange: (value: string) => void = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onTouched: () => void = () => {};
 
   writeValue(value: string): void {
     this.innerValue = value ?? '';
@@ -44,20 +51,14 @@ export class PasswordInput {
   }
 
   handleInput(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const value = target.value;
+    const value = (event.target as HTMLInputElement).value;
     this.innerValue = value;
     this.onChange(value);
-    this.onTouched();
   }
 
   onButtonToggleClick(): void {
-    if (this.type === 'password') {
-      this.type = 'text';
-      this.buttonIcon = EPasswordInputIcons.Opened;
-    } else {
-      this.type = 'password';
-      this.buttonIcon = EPasswordInputIcons.Closed;
-    }
+    const isPassword = this.type === 'password';
+    this.type = isPassword ? 'text' : 'password';
+    this.buttonIcon = isPassword ? EPasswordInputIcons.Opened : EPasswordInputIcons.Closed;
   }
 }
