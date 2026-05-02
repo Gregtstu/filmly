@@ -29,6 +29,7 @@ export class PasswordInput implements ControlValueAccessor {
 
   iconUrl = input<string>();
   placeholder = input<string>('');
+  prefixIcon = input<string>();
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onChange: (value: string) => void = () => {};
   // eslint-disable-next-line @typescript-eslint/no-empty-function

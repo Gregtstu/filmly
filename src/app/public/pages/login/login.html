@@ -1,24 +1,15 @@
-<form [formGroup]="form" (ngSubmit)="onLogin()" class="login">
-  <!-- Используем CVA Input -->
+<form [formGroup]="form" (ngSubmit)="onLogin()">
   <app-input
     formControlName="email"
-    iconUrl="icons/mail.svg"
+    prefixIcon="icons/mail.svg"
     placeholder="Email">
   </app-input>
-  @if (form.get('email')?.touched && form.get('email')?.invalid) {
-    <div class="error">Введите корректный email</div>
-  }
 
-  <!-- Используем CVA PasswordInput -->
   <app-password-input
     formControlName="password"
-    iconUrl="icons/lock.svg"
+    prefixIcon="icons/lock.svg"
     placeholder="Пароль">
   </app-password-input>
-  @if (form.get('password')?.touched && form.get('password')?.invalid) {
-    <div class="error">Пароль обязателен</div>
-  }
 
-  <!-- Связываем кнопку с сигналом -->
   <app-button [disabled]="isSubmitDisabled()" type="submit">Войти</app-button>
 </form>
