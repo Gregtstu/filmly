@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="onLogin()">
+  <app-input
+    formControlName="email"
+    prefixIcon="icons/mail.svg"
+    placeholder="Email">
+  </app-input>
+
+  <app-password-input
+    formControlName="password"
+    prefixIcon="icons/lock.svg"
+    placeholder="Пароль">
+  </app-password-input>
+
+  <app-button [disabled]="isSubmitDisabled()" type="submit">Войти</app-button>
+</form>

@@ -1,0 +1,13 @@
+<form [formGroup]="filterForm">
+  <app-select
+    formControlName="genre"
+    [options]="genres$ | async">
+  </app-select>
+
+  <app-input
+    formControlName="search"
+    placeholder="Поиск...">
+  </app-input>
+</form>
+
+<router-outlet></router-outlet>
