@@ -1,23 +1,37 @@
-import { AuthService } from './../../../shared/services/auth.service';
-import { Component, inject } from '@angular/core';
-import { InputComponent } from '../../../shared/components/input/input';
-import { Button } from '../../../shared/components/button/button';
-import { PasswordInput } from '../../../shared/components/password-input/password-input';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { DestroyRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../shared/services/auth.service';
 
-@Component({
-  selector: 'app-login',
-  imports: [InputComponent, Button, PasswordInput],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
-})
 export class Login {
-  private _router: Router = inject(Router);
-  private _authServ: AuthService = inject(AuthService);
+  private _destroyRef = inject(DestroyRef);
+  private _router = inject(Router);
+  private _authServ = inject(AuthService);
+
+  form = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
+  });
+
+  isSubmitDisabled = toSignal(
+    this.form.statusChanges.pipe(
+      map(() => this.form.invalid || this.form.pristine)
+    ),
+    { initialValue: true }
+  );
+
+  constructor() {
+    this.form.valueChanges
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe(val => console.log('Login Form Change:', val));
+  }
 
   onLogin() {
-    this._authServ.isAuthenticated = true;
-    this._router.navigate(['/private']);
+    if (this.form.valid) {
+      this._authServ.isAuthenticated = true;
+      this._router.navigate(['/private']);
+    }
   }
 }

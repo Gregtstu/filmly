@@ -53,6 +53,14 @@ export class StoreService {
     });
   }
 
+  updateFilters(filters: Partial<IAppStore['filters']>): void {
+    this.updateData({ filters: filters as any });
+  }
+
+  getFiltersValue() {
+    return this.snapshot.filters;
+  }
+
   // Текущее значение (Snapshot)
   get snapshot(): IAppStore {
     return this._state$.getValue();
